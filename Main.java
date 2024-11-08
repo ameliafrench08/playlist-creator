@@ -16,7 +16,8 @@ public class Main {
         int rapNumber = 0;
         int rNBNumber = 0;
         int counter = 1;
-        
+        int numSongs = 0;
+
         String firstChoice = "";
         String secondChoice = "";
         String thirdChoice = "";
@@ -39,7 +40,7 @@ public class Main {
             System.out.println(counter +  ") " + genres.get(i));
             counter++;
         }
-        
+
         System.out.print("Enter your first choice (number): ");
         int firstChoiceNum = s.nextInt();
         firstChoice = genres.get(firstChoiceNum - 1);
@@ -84,7 +85,19 @@ public class Main {
         int fifthChoiceNum = s.nextInt();
         fifthChoice = genres.get(fifthChoiceNum - 1);
         genres.remove(fifthChoiceNum - 1);
+
+        System.out.println();
+
+        System.out.print("How many songs would you like in your playlist: ");
+        if (s.nextInt() <= 50){
+            numSongs = s.nextInt();
+        }
+        else{
+            numSongs = 50;
+        }
         
+
         
+        CreatePlaylist playlist = new CreatePlaylist(firstChoice, secondChoice, thirdChoice, fourthChoice, fifthChoice, numSongs);
     }
 }
