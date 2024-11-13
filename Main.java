@@ -1,12 +1,13 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Scanner s = new Scanner(System.in);
         int popNumber = 0;
         int rockNumber = 0;
@@ -49,7 +50,6 @@ public class Main {
         firstChoice = genres.get(firstChoiceNum - 1);
         genres.remove(firstChoiceNum - 1);
 
-        System.out.println(firstChoice);
 
         for (int i = 0; i < genres.size(); i++){
             System.out.println(counter +  ") " + genres.get(i));
@@ -62,7 +62,6 @@ public class Main {
         secondChoice = genres.get(secondChoiceNum - 1);
         genres.remove(secondChoiceNum - 1);
 
-        System.out.println(secondChoice);
 
         for (int i = 0; i < genres.size(); i++) {
             System.out.println(counter + ") " + genres.get(i));
@@ -75,7 +74,6 @@ public class Main {
         thirdChoice = genres.get(thirdChoiceNum - 1);
         genres.remove(thirdChoiceNum - 1);
 
-        System.out.println(thirdChoice);
 
         for (int i = 0; i < genres.size(); i++) {
             System.out.println(counter + ") " + genres.get(i));
@@ -88,7 +86,6 @@ public class Main {
         fourthChoice = genres.get(fourthChoiceNum - 1);
         genres.remove(fourthChoiceNum - 1);
 
-        System.out.println(fourthChoice);
 
         for (int i = 0; i < genres.size(); i++) {
             System.out.println(counter + ") " + genres.get(i));
@@ -101,7 +98,6 @@ public class Main {
         fifthChoice = genres.get(fifthChoiceNum - 1);
         genres.remove(fifthChoiceNum - 1);
 
-        System.out.println(fifthChoice);
 
         System.out.println();
 
@@ -113,6 +109,6 @@ public class Main {
         CreatePlaylist playlist = new CreatePlaylist(firstChoice, secondChoice, thirdChoice, fourthChoice, fifthChoice, numSongs);
         numSongsPerGenre = playlist.assignNumEachGenre();
         songs = playlist.choosingSongs();
-//        System.out.println(songs);
+        System.out.println(songs);
     }
 }
