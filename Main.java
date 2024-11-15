@@ -36,7 +36,6 @@ public class Main {
         genres.add("Jazz");
         genres.add("Pop");
         genres.add("Rap");
-        genres.add("RnB");
         genres.add("Rock");
 
         System.out.println("Your options: ");
@@ -102,7 +101,7 @@ public class Main {
         System.out.println();
 
         System.out.print("How many songs would you like in your playlist: ");
-        numSongs = Math.min(s.nextInt(), 50);
+        numSongs = Math.min(s.nextInt(), 80);
 
 
 
