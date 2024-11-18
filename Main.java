@@ -109,5 +109,93 @@ public class Main {
         numSongsPerGenre = playlist.assignNumEachGenre();
         songs = playlist.choosingSongs();
         System.out.println(songs);
+
+        System.out.println("You can: \n   1) Edit songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
+        System.out.print("Enter your choice: ");
+        int choice = s.nextInt();
+
+        System.out.println();
+
+
+        EditPlaylist editedPlaylist = new EditPlaylist(songs);
+        while (choice != 5){
+            if (choice == 1){
+                System.out.print("Enter the number of the song you would like to change (1 - " + songs.size() + "): ");
+                int originalIndex = s.nextInt() - 1;
+
+                System.out.println();
+
+                System.out.print("Enter the number of the place to change the song to (1 - " + songs.size() + "): ");
+                int newIndex = s.nextInt() - 1;
+                songs = editedPlaylist.editOrder(originalIndex, newIndex);
+
+                System.out.println();
+
+                System.out.println();
+                System.out.println("New Playlist: " + songs);
+
+                System.out.println();
+            }
+
+            else if (choice == 2){
+                System.out.print("Enter the number of the song you would like to remove (1 - " + songs.size() + "): ");
+                int indexRemove = s.nextInt() - 1;
+                songs = editedPlaylist.removeSong(indexRemove);
+
+                System.out.println();
+                System.out.println("New Playlist: " + songs);
+
+                System.out.println();
+            }
+
+            else if (choice == 3){
+                System.out.print("Enter the number of songs you would like to add: ");
+                int numTimes = s.nextInt();
+
+                while (numTimes >= 0){
+                    songs = editedPlaylist.addSong();
+                    numTimes--;
+                }
+
+                System.out.println();
+                System.out.println("Edited playlist: " + songs);
+
+                System.out.println();
+            }
+
+            else if (choice == 4){
+                System.out.println();
+
+                System.out.print("How many times would you like to randomize: ");
+                int numRandoms = s.nextInt();
+
+                System.out.println();
+
+                int tracker = 1;
+                while (numRandoms > 0){
+                    songs = editedPlaylist.randomizeOrder();
+                    System.out.println(tracker + ") " + songs);
+                    tracker++;
+                    numRandoms--;
+                }
+
+                System.out.println();
+
+                System.out.println("Final Playlist: " + songs);
+            }
+
+            System.out.println("You can: \n   1) Edit songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
+            System.out.print("Enter your choice: ");
+            choice = s.nextInt();
+
+
+            System.out.println();
+        }
+
+        System.out.println("Final Playlist: " + songs);
+
+
+
+
     }
 }

@@ -387,7 +387,6 @@ public class CreatePlaylist {
         }
 
         numSongsGenre.removeFirst();
-        System.out.println(numSongsGenre);
         numbersChosen.clear();
 
         //Rock
@@ -443,9 +442,8 @@ public class CreatePlaylist {
         }
 
         int difference = originalAddition - songs.size();
-        System.out.println("Difference: " + difference);
 
-        while(difference > 0){
+        while(difference >= 0){
             int atBeginningSongSize = songs.size();
             int randomGenre = rand.nextInt(8) + 1;
             if (randomGenre == 1){ // If Classical
@@ -462,6 +460,7 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
@@ -483,6 +482,7 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
@@ -525,6 +525,7 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
@@ -546,6 +547,7 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
@@ -567,6 +569,7 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
@@ -588,6 +591,8 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
@@ -609,17 +614,20 @@ public class CreatePlaylist {
                     String data = myReader.nextLine();
                     if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
                         songs.add(data);
+                        System.out.println("Data: " + data);
                     }
                     k++;
                     lineNumberReader.setLineNumber(k);
                 }
                 myReader.close();
             }
+
             if (songs.size() - 1 == atBeginningSongSize) {
                 difference--;
             }
         }
 
+        System.out.println("Number of songs: " + songs.size());
         return songs;
     }
 
