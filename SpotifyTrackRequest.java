@@ -4,26 +4,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
-public class SpotifyTokenRequest {
+public class SpotifyTrackRequest {
     public static void main(String[] args) {
-        String clientId = "8d31f716363d4674b62e497cb55b08a7";
-        String clientSecret = "b04f5f9db7924b9fb49b920dcd70904b";
-        String url = "https://accounts.spotify.com/api/token";
+        String accessToken = "1POdFZRZbvb...qqillRxMr2z"; // REPLACE ASAP
+        String trackId = "11dFghVXANM1KmJXsNCbN1";
+        String url = "https://api.spotify.com/v1/artists/" + trackId;
 
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-            String data = "grant_type=client_credentials&client_id=" + URLEncoder.encode(clientId, StandardCharsets.UTF_8) + "&client_secret=" + URLEncoder.encode(clientSecret, StandardCharsets.UTF_8);
-
-            con.setDoOutput(true);
-            con.getOutputStream().write(data.getBytes(StandardCharsets.UTF_8));
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Authorization", "Bearer " + accessToken);
 
             int responseCode = con.getResponseCode();
             System.out.println("Response Code : " + responseCode);
@@ -42,11 +35,7 @@ public class SpotifyTokenRequest {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("hi");;
+            e.printStackTrace();
         }
     }
 }
-
-
-
-
