@@ -1,6 +1,5 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,8 @@ public class Main {
         genres.add("Rap");
         genres.add("Rock");
 
+        System.out.println();
+
         System.out.println("Your options: ");
         for (int i = 0; i < genres.size(); i++){
             System.out.println(counter +  ") " + genres.get(i));
@@ -49,6 +50,7 @@ public class Main {
         firstChoice = genres.get(firstChoiceNum - 1);
         genres.remove(firstChoiceNum - 1);
 
+        System.out.println();
 
         for (int i = 0; i < genres.size(); i++){
             System.out.println(counter +  ") " + genres.get(i));
@@ -61,6 +63,7 @@ public class Main {
         secondChoice = genres.get(secondChoiceNum - 1);
         genres.remove(secondChoiceNum - 1);
 
+        System.out.println();
 
         for (int i = 0; i < genres.size(); i++) {
             System.out.println(counter + ") " + genres.get(i));
@@ -72,6 +75,8 @@ public class Main {
         int thirdChoiceNum = s.nextInt();
         thirdChoice = genres.get(thirdChoiceNum - 1);
         genres.remove(thirdChoiceNum - 1);
+
+        System.out.println();
 
 
         for (int i = 0; i < genres.size(); i++) {
@@ -85,6 +90,7 @@ public class Main {
         fourthChoice = genres.get(fourthChoiceNum - 1);
         genres.remove(fourthChoiceNum - 1);
 
+        System.out.println();
 
         for (int i = 0; i < genres.size(); i++) {
             System.out.println(counter + ") " + genres.get(i));
@@ -97,6 +103,7 @@ public class Main {
         fifthChoice = genres.get(fifthChoiceNum - 1);
         genres.remove(fifthChoiceNum - 1);
 
+        System.out.println();
 
         System.out.println();
 
@@ -108,7 +115,19 @@ public class Main {
         CreatePlaylist playlist = new CreatePlaylist(firstChoice, secondChoice, thirdChoice, fourthChoice, fifthChoice, numSongs);
         numSongsPerGenre = playlist.assignNumEachGenre();
         songs = playlist.choosingSongs();
-        System.out.println(songs);
+
+        while (songs.size() < numSongs) {
+            songs = playlist.addForFirst();
+        }
+
+        System.out.println();
+
+        System.out.println("Rough Playlist: ");
+        for (int v = 0; v < songs.size(); v++){
+            System.out.println((v +1) + ") " + songs.get(v));
+        }
+
+        System.out.println();
 
         System.out.println("You can: \n   1) Edit songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
         System.out.print("Enter your choice: ");
@@ -117,7 +136,7 @@ public class Main {
         System.out.println();
 
 
-        EditPlaylist editedPlaylist = new EditPlaylist(songs);
+        EditPlaylist editedPlaylist = new EditPlaylist(songs, firstChoice);
         while (choice != 5){
             if (choice == 1){
                 System.out.print("Enter the number of the song you would like to change (1 - " + songs.size() + "): ");
@@ -132,7 +151,10 @@ public class Main {
                 System.out.println();
 
                 System.out.println();
-                System.out.println("New Playlist: " + songs);
+                System.out.println("New Playlist: ");
+                for (int e = 0; e < songs.size(); e++){
+                    System.out.println((e +1) + ") " + songs.get(e));
+                }
 
                 System.out.println();
             }
@@ -143,7 +165,10 @@ public class Main {
                 songs = editedPlaylist.removeSong(indexRemove);
 
                 System.out.println();
-                System.out.println("New Playlist: " + songs);
+                System.out.println("New Playlist: ");
+                for (int r = 0; r < songs.size(); r++){
+                    System.out.println((r +1) + ") " + songs.get(r));
+                }
 
                 System.out.println();
             }
@@ -152,13 +177,17 @@ public class Main {
                 System.out.print("Enter the number of songs you would like to add: ");
                 int numTimes = s.nextInt();
 
-                while (numTimes >= 0){
+                int origSongsSize = songs.size();
+                while (songs.size() < (origSongsSize + numTimes)){
                     songs = editedPlaylist.addSong();
-                    numTimes--;
+
                 }
 
                 System.out.println();
-                System.out.println("Edited playlist: " + songs);
+                System.out.println("Edited playlist: ");
+                for (int m = 0; m < songs.size(); m++){
+                    System.out.println((m +1) + ") " + songs.get(m));
+                }
 
                 System.out.println();
             }
@@ -181,7 +210,10 @@ public class Main {
 
                 System.out.println();
 
-                System.out.println("Final Playlist: " + songs);
+                System.out.println("Final Playlist: ");
+                for (int l = 0; l < songs.size(); l++){
+                    System.out.println((l+1) + ") " + songs.get(l));
+                }
             }
 
             System.out.println("You can: \n   1) Edit songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
@@ -192,7 +224,13 @@ public class Main {
             System.out.println();
         }
 
-        System.out.println("Final Playlist: " + songs);
+        System.out.println();
+
+        System.out.println("------------------------------------------------------------------------------");
+        System.out.println("Final Playlist: ");
+        for (int t = 0; t < songs.size(); t++){
+            System.out.println((t+1) + ") " + songs.get(t));
+        }
 
 
 
