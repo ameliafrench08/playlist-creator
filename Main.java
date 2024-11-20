@@ -250,6 +250,139 @@ public class Main {
         }
 
 
+        System.out.println("------------------------------------------------------------------------------");
+
+        System.out.println();
+
+        System.out.print("Would you like to create your own playlist? (1 for yes, anything else for no): ");
+        String createOwnPlaylist = s.nextLine();
+
+        if (createOwnPlaylist.equals("1")){
+            int numberOfSong = 1;
+            List<String> userPlaylist = new ArrayList<>();
+            System.out.println();
+
+            System.out.println("Perfect! Unlike our randomly generated playlist, your playlist can go on forever! \nTo get started, just enter the number of the song. Don't worry, we'll save them! \nTo quit, enter -1");
+            String userSong = "";
+
+            System.out.println();
+
+            while (!userSong.equals("-1")){
+                System.out.print(numberOfSong + ") ");
+                userSong = s.nextLine();
+                userPlaylist.add(userSong);
+                numberOfSong++;
+            }
+
+            System.out.println();
+
+            System.out.println("Wow, that looks like a great playlist! Would you like to edit it? (1 for yes, anything else for no): ");
+            String editPlaylist = s.nextLine();
+            if (editPlaylist.equals("1")){
+                EditPlaylist userEditPlaylist = new EditPlaylist(userPlaylist, "Classical");
+
+                System.out.println();
+
+                System.out.println("You can: \n   1) Edit placement of songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
+                System.out.print("Enter your choice: ");
+                int choiceUserPlaylist = s.nextInt();
+
+                System.out.println();
+
+
+
+                while (choiceUserPlaylist != 5){
+                    if (choiceUserPlaylist == 1){
+                        System.out.print("Enter the number of the song you would like to change (1 - " + userPlaylist.size() + "): ");
+                        int originalIndex = s.nextInt() - 1;
+
+                        System.out.println();
+
+                        System.out.print("Enter the number of the place to change the song to (1 - " + userPlaylist.size() + "): ");
+                        int newIndex = s.nextInt() - 1;
+                        userPlaylist = editedPlaylist.editOrder(originalIndex, newIndex);
+
+                        System.out.println();
+
+                        System.out.println();
+                        System.out.println("New Playlist: ");
+                        for (int i = 0; i < userPlaylist.size(); i++){
+                            System.out.println((i +1) + ") " + userPlaylist.get(i));
+                        }
+
+                        System.out.println();
+                    }
+
+                    else if (choiceUserPlaylist == 2){
+                        System.out.print("Enter the number of the song you would like to remove (1 - " + userPlaylist.size() + "): ");
+                        int indexRemoveUser = s.nextInt() - 1;
+                        userPlaylist = editedPlaylist.removeSong(indexRemoveUser);
+
+                        System.out.println();
+                        System.out.println("New Playlist: ");
+                        for (int a = 0; a < userPlaylist.size(); a++){
+                            System.out.println((a +1) + ") " + userPlaylist.get(a));
+                        }
+
+                        System.out.println();
+                    }
+
+                    else if (choiceUserPlaylist == 3){
+                        System.out.print("Enter the number of songs you would like to add: ");
+                        int numTimesUser = s.nextInt();
+
+                        int origSongsSizeUser = userPlaylist.size();
+                        while (userPlaylist.size() < (origSongsSizeUser + numTimesUser)){
+                            userPlaylist = editedPlaylist.addSong();
+
+                        }
+
+                        System.out.println();
+                        System.out.println("Edited playlist: ");
+                        for (int m = 0; m < userPlaylist.size(); m++){
+                            System.out.println((m +1) + ") " + userPlaylist.get(m));
+                        }
+
+                        System.out.println();
+                    }
+
+                    else if (choiceUserPlaylist == 4){
+                        System.out.println();
+
+                        System.out.print("How many times would you like to randomize: ");
+                        int numRandomsUser = s.nextInt();
+
+                        System.out.println();
+
+                        int trackerUser = 1;
+                        while (numRandomsUser > 0){
+                            userPlaylist = editedPlaylist.randomizeOrder();
+                            System.out.println(trackerUser + ") " + userPlaylist);
+                            trackerUser++;
+                            numRandomsUser--;
+                        }
+
+                        System.out.println();
+
+                        System.out.println("Final Playlist: ");
+                        for (int l = 0; l < userPlaylist.size(); l++){
+                            System.out.println((l+1) + ") " + userPlaylist.get(l));
+                        }
+                    }
+
+                    System.out.println("You can: \n   1) Edit songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
+                    System.out.print("Enter your choice: ");
+                    choiceUserPlaylist = s.nextInt();
+
+
+                    System.out.println();
+                }
+            }
+
+
+        }
+
+
 
 
     }
