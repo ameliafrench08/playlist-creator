@@ -63,4 +63,32 @@ public class EditPlaylist {
         return songs;
     }
 
+    public List<String> addForFirst() throws FileNotFoundException {
+        Random rand = new Random();
+
+
+        File firstChoiceFile = new File(
+                "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\" + firstChoice);
+        Scanner myReader = new Scanner(firstChoiceFile);
+
+
+        int randomSong = rand.nextInt(103) + 1;
+
+        int k = 1;
+        LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\" + firstChoice));
+        lineNumberReader.setLineNumber(1);
+        while (myReader.hasNext()) {
+            String data = myReader.nextLine();
+            if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
+                songs.add(data);
+            }
+            k++;
+            lineNumberReader.setLineNumber(k);
+//              k++;
+        }
+        myReader.close();
+
+        return songs;
+    }
+
 }

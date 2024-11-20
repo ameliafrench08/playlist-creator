@@ -67,7 +67,7 @@ public class CreatePlaylist {
 
     public List<String> choosingSongs() throws FileNotFoundException {
 
-        List<String> songs = new ArrayList<>(80);
+        List<String> songs = new ArrayList<>(160);
         List<Integer> numbersChosen = new ArrayList<>();
         Random rand = new Random();
 
@@ -304,7 +304,7 @@ public class CreatePlaylist {
 //              k++;
             }
             if ("Pop".equals(firstChoice) && !doneBeforePop){
-                randomSong = rand.nextInt(80) + 1;
+                randomSong = rand.nextInt(97) + 1;
                 k = 1;
                 lineNumberReader.setLineNumber(1);
                 while (myReader.hasNext()){
@@ -420,33 +420,7 @@ public class CreatePlaylist {
         return songs;
     }
 
-    public List<String> addForFirst() throws FileNotFoundException {
-        Random rand = new Random();
-        List<String> songs = new ArrayList<>(choosingSongs());
 
-        File firstChoiceFile = new File(
-                "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\" + firstChoice);
-        Scanner myReader = new Scanner(firstChoiceFile);
-
-
-        int randomSong = rand.nextInt(103) + 1;
-
-        int k = 1;
-        LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\" + firstChoice));
-        lineNumberReader.setLineNumber(1);
-        while (myReader.hasNext()) {
-            String data = myReader.nextLine();
-            if (randomSong == lineNumberReader.getLineNumber() && !songs.contains(data)) {
-                songs.add(data);
-            }
-            k++;
-            lineNumberReader.setLineNumber(k);
-//              k++;
-        }
-        myReader.close();
-
-        return songs;
-    }
 
 
 }

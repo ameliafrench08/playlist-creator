@@ -8,14 +8,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner s = new Scanner(System.in);
-        int popNumber = 0;
-        int rockNumber = 0;
-        int classicalNumber = 0;
-        int countryNumber = 0;
-        int hipHopNumber = 0;
-        int jazzNumber = 0;
-        int rapNumber = 0;
-        int rNBNumber = 0;
         int counter = 1;
         int numSongs = 0;
 
@@ -37,69 +29,88 @@ public class Main {
         genres.add("Rap");
         genres.add("Rock");
 
+
+        System.out.println("Welcome to Playlist Creator! \nTo use, you will enter your 1st-5th picks of genres and we will create a playlist for you according to those choices. \nYou will also enter the number of songs you want, 1-160. \nBe careful with the numbers you enter, because if you enter a number not from 1-however many genres left, classical will be your automatic choice.");
+        System.out.println();
+
         System.out.println();
 
         System.out.println("Your options: ");
-        for (int i = 0; i < genres.size(); i++){
-            System.out.println(counter +  ") " + genres.get(i));
+        for (String item : genres) {
+            System.out.println(counter + ") " + item);
             counter++;
         }
         counter = 1;
         System.out.print("Enter your first choice (number): ");
         int firstChoiceNum = s.nextInt();
+        if (!(1 <= firstChoiceNum) || !(8 >= firstChoiceNum)){
+            firstChoiceNum = 1;
+        }
         firstChoice = genres.get(firstChoiceNum - 1);
         genres.remove(firstChoiceNum - 1);
 
         System.out.println();
 
-        for (int i = 0; i < genres.size(); i++){
-            System.out.println(counter +  ") " + genres.get(i));
+        for (String value : genres) {
+            System.out.println(counter + ") " + value);
             counter++;
         }
         counter = 1;
 
         System.out.print("Enter your second choice (number): ");
         int secondChoiceNum = s.nextInt();
+        if (!(1 <= secondChoiceNum) || !(7 >= secondChoiceNum)){
+            secondChoiceNum = 1;
+        }
         secondChoice = genres.get(secondChoiceNum - 1);
         genres.remove(secondChoiceNum - 1);
 
         System.out.println();
 
-        for (int i = 0; i < genres.size(); i++) {
-            System.out.println(counter + ") " + genres.get(i));
+        for (String string : genres) {
+            System.out.println(counter + ") " + string);
             counter++;
         }
         counter = 1;
 
         System.out.print("Enter your third choice (number): ");
         int thirdChoiceNum = s.nextInt();
+        if (!(1 <= thirdChoiceNum) || !(6 >= thirdChoiceNum)){
+            thirdChoiceNum = 1;
+        }
         thirdChoice = genres.get(thirdChoiceNum - 1);
         genres.remove(thirdChoiceNum - 1);
 
         System.out.println();
 
 
-        for (int i = 0; i < genres.size(); i++) {
-            System.out.println(counter + ") " + genres.get(i));
+        for (String genre : genres) {
+            System.out.println(counter + ") " + genre);
             counter++;
         }
         counter = 1;
 
         System.out.print("Enter your fourth choice (number): ");
         int fourthChoiceNum = s.nextInt();
+        if (!(1 <= fourthChoiceNum) || !(5 >= fourthChoiceNum)) {
+            fourthChoiceNum = 1;
+        }
         fourthChoice = genres.get(fourthChoiceNum - 1);
         genres.remove(fourthChoiceNum - 1);
 
         System.out.println();
 
-        for (int i = 0; i < genres.size(); i++) {
-            System.out.println(counter + ") " + genres.get(i));
+        for (String genre : genres) {
+            System.out.println(counter + ") " + genre);
             counter++;
         }
         counter = 1;
 
         System.out.print("Enter your fifth choice (number): ");
         int fifthChoiceNum = s.nextInt();
+        if (!(1 <= fifthChoiceNum) || !(4 >= fifthChoiceNum)){
+            fifthChoiceNum = 1;
+        }
         fifthChoice = genres.get(fifthChoiceNum - 1);
         genres.remove(fifthChoiceNum - 1);
 
@@ -108,16 +119,21 @@ public class Main {
         System.out.println();
 
         System.out.print("How many songs would you like in your playlist: ");
-        numSongs = Math.min(s.nextInt(), 80);
+        numSongs = Math.min(s.nextInt(), 160);
 
 
 
         CreatePlaylist playlist = new CreatePlaylist(firstChoice, secondChoice, thirdChoice, fourthChoice, fifthChoice, numSongs);
+
+
         numSongsPerGenre = playlist.assignNumEachGenre();
         songs = playlist.choosingSongs();
 
+
+
+        EditPlaylist editedPlaylist = new EditPlaylist(songs, firstChoice);
         while (songs.size() < numSongs) {
-            songs = playlist.addForFirst();
+            songs = editedPlaylist.addForFirst();
         }
 
         System.out.println();
@@ -127,16 +143,17 @@ public class Main {
             System.out.println((v +1) + ") " + songs.get(v));
         }
 
+
         System.out.println();
 
-        System.out.println("You can: \n   1) Edit songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
+        System.out.println("You can: \n   1) Edit placement of songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
         System.out.print("Enter your choice: ");
         int choice = s.nextInt();
 
         System.out.println();
 
 
-        EditPlaylist editedPlaylist = new EditPlaylist(songs, firstChoice);
+
         while (choice != 5){
             if (choice == 1){
                 System.out.print("Enter the number of the song you would like to change (1 - " + songs.size() + "): ");
