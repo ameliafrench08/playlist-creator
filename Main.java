@@ -267,11 +267,19 @@ public class Main {
 
             System.out.println();
 
+
+
             while (!userSong.equals("-1")){
-                numberOfSong++;
+                if (numberOfSong == 0){
+                    System.out.println(numberOfSong + ") Example Song (This won't be added to your playlist)");
+                    userSong = s.nextLine();
+                    numberOfSong++;
+                    System.out.println();
+                }
                 System.out.print(numberOfSong + ") ");
                 userSong = s.nextLine();
                 userPlaylist.add(userSong);
+                numberOfSong++;
 
             }
 
