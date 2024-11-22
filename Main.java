@@ -353,11 +353,11 @@ public class Main {
             // -------------------------------------------
 
             // Lets the user edit their playlist:
-            
+
             System.out.println("Wow, that looks like a great playlist! Would you like to edit it? (1 for yes, anything else for no): ");
             int editPlaylist = s.nextInt();
             if (editPlaylist == 1){
-                EditPlaylist userEditPlaylist = new EditPlaylist(userPlaylist, "Classical");
+                EditPlaylist userEditPlaylist = new EditPlaylist(userPlaylist, firstChoice);
 
                 System.out.println();
 
