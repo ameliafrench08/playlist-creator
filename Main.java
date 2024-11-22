@@ -29,11 +29,17 @@ public class Main {
         genres.add("Rap");
         genres.add("Rock");
 
+        // ------------------------------------------------------------------------
+        // Intro:
 
         System.out.println("Welcome to Playlist Creator! \nTo use, you will enter your 1st-5th picks of genres and we will create a playlist for you according to those choices. \nYou will also enter the number of songs you want, 1-160. \nBe careful with the numbers you enter, because if you enter a number not from 1-however many genres left, classical will be your automatic choice.");
         System.out.println();
 
         System.out.println();
+
+
+        // --------------------------------
+        // Prints options:
 
         System.out.println("Your options: ");
         for (String item : genres) {
@@ -41,6 +47,10 @@ public class Main {
             counter++;
         }
         // Your inputs don't check for invalid ints
+
+        // --------------------------------------------------------
+        // First choice:
+
         counter = 1;
         System.out.print("Enter your first choice (number): ");
         int firstChoiceNum = s.nextInt();
@@ -56,6 +66,9 @@ public class Main {
             System.out.println(counter + ") " + value);
             counter++;
         }
+
+        // ---------------------------------------------------------
+        // Second choice:
         counter = 1;
 
         System.out.print("Enter your second choice (number): ");
@@ -72,6 +85,10 @@ public class Main {
             System.out.println(counter + ") " + string);
             counter++;
         }
+
+        // ------------------------------------------------
+        // Third choice:
+
         counter = 1;
 
         System.out.print("Enter your third choice (number): ");
@@ -89,6 +106,9 @@ public class Main {
             System.out.println(counter + ") " + genre);
             counter++;
         }
+
+        // ---------------------------------------------
+        // Fourth choice:
         counter = 1;
 
         System.out.print("Enter your fourth choice (number): ");
@@ -105,6 +125,10 @@ public class Main {
             System.out.println(counter + ") " + genre);
             counter++;
         }
+
+        // ------------------------------------------
+        // Fifth choice:
+
         counter = 1;
 
         System.out.print("Enter your fifth choice (number): ");
@@ -119,25 +143,35 @@ public class Main {
 
         System.out.println();
 
+        // -----------------------------------------------------
+
+        // Number of songs:
+
         System.out.print("How many songs would you like in your playlist: ");
         numSongs = Math.min(s.nextInt(), 160);
 
 
+        //---------------------------
+        // Setting up playlist:
 
         CreatePlaylist playlist = new CreatePlaylist(firstChoice, secondChoice, thirdChoice, fourthChoice, fifthChoice, numSongs);
-
-
         numSongsPerGenre = playlist.assignNumEachGenre();
         songs = playlist.choosingSongs();
 
+        // ---------------------------------------------
 
+        // Setting up editing of playlist:
 
         EditPlaylist editedPlaylist = new EditPlaylist(songs, firstChoice);
         while (songs.size() < numSongs) {
             songs = editedPlaylist.addForFirst();
         }
 
+        // -----------------------------------------
+
         System.out.println();
+
+        // Prints playlist:
 
         System.out.println("Rough Playlist: ");
         for (int v = 0; v < songs.size(); v++){
@@ -147,13 +181,19 @@ public class Main {
 
         System.out.println();
 
+        // -----------------------------------------
+
+        // Giving options for editing playlist:
+
         System.out.println("You can: \n   1) Edit placement of songs (Enter 1) \n   2) Remove a song (Enter 2) \n   3) Add a random song (Enter 3) \n   4) Randomize the order of the playlist (Enter 4) \n   5) Quit and print playlist (Enter 5)");
         System.out.print("Enter your choice: ");
         int choice = s.nextInt();
 
         System.out.println();
 
+        // -----------------------------------------
 
+        // While the user wants to edit the playlist, they edit:
 
         while (choice != 5){
             if (choice == 1){
@@ -244,6 +284,10 @@ public class Main {
 
         System.out.println();
 
+        // --------------------------------------------
+
+        // Print the final randomized playlist:
+
         System.out.println("------------------------------------------------------------------------------");
         System.out.println("Final Playlist: ");
         for (int t = 0; t < songs.size(); t++){
@@ -253,15 +297,26 @@ public class Main {
 
         System.out.println("------------------------------------------------------------------------------");
 
+
+        // --------------------------------------------
+
+        // User can create their own playlist:
+
         System.out.println();
 
         System.out.print("Would you like to create your own playlist? (1 for yes, anything other number for no): ");
         int createOwnPlaylist = s.nextInt();
 
+        // ---------------------------------------------
+
+        // Sets up the playlist:
+
         if (createOwnPlaylist == 1){
             int numberOfSong = 0;
             List<String> userPlaylist = new ArrayList<>();
             System.out.println();
+
+            // ------------------------------------------
 
             System.out.println("Perfect! Unlike our randomly generated playlist, your playlist can go on forever! \nTo get started, just enter the number of the song. Don't worry, we'll save them! \nTo quit, enter -1");
             String userSong = "";
@@ -269,13 +324,14 @@ public class Main {
             System.out.println();
 
 
+            // While the user wants to add songs, they can type them in:
 
             while (!userSong.equals("-1")){
                 if (numberOfSong == 0){
                     System.out.println(numberOfSong + ") Example Song (This won't be added to your playlist)");
                     userSong = s.nextLine();
                     numberOfSong++;
-                    System.out.println(99999);
+                    System.out.println();
                 }
                 System.out.print(numberOfSong + ") ");
                 userSong = s.nextLine();
@@ -284,11 +340,20 @@ public class Main {
 
             }
 
+            // -------------------------------------------
+
+            // Removes the -1:
             userPlaylist.removeLast();
 
+
+            // Prints their playlist:
             System.out.println(userPlaylist);
             System.out.println();
 
+            // -------------------------------------------
+
+            // Lets the user edit their playlist:
+            
             System.out.println("Wow, that looks like a great playlist! Would you like to edit it? (1 for yes, anything else for no): ");
             int editPlaylist = s.nextInt();
             if (editPlaylist == 1){
