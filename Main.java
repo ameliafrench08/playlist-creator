@@ -40,6 +40,7 @@ public class Main {
             System.out.println(counter + ") " + item);
             counter++;
         }
+        // Your inputs don't check for invalid ints
         counter = 1;
         System.out.print("Enter your first choice (number): ");
         int firstChoiceNum = s.nextInt();
@@ -274,7 +275,7 @@ public class Main {
                     System.out.println(numberOfSong + ") Example Song (This won't be added to your playlist)");
                     userSong = s.nextLine();
                     numberOfSong++;
-                    System.out.println();
+                    System.out.println(99999);
                 }
                 System.out.print(numberOfSong + ") ");
                 userSong = s.nextLine();

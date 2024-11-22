@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.File;  // Import the File class
 
 
+/** CreatePlaylist class represents a Playlist. This has genres that are the 1st, second, 3rd, 4th, and 5th choices, and have numSongs songs.**/
 public class CreatePlaylist {
     private String firstChoice;
     private String secondChoice;
@@ -12,6 +13,15 @@ public class CreatePlaylist {
     private String fourthChoice;
     private String fifthChoice;
     private int numSongs;
+
+    /** Constructor for the CreatePlaylist class. Parameters:
+     * @param firstChoice represents the user's first choice for genre
+     * @param secondChoice represents the user's second genre choice
+     * @param thirdChoice represents the user's third genre choice
+     * @param fourthChoice represents the user's fourth genre choice
+     * @param fifthChoice represents the user's fifth genre choice
+     * @param numSongs represents number of songs the user wants, from 1-160
+     **/
 
     public CreatePlaylist(String firstChoice, String secondChoice, String thirdChoice, String fourthChoice, String fifthChoice, int numSongs){
         this.firstChoice = firstChoice;
@@ -22,6 +32,15 @@ public class CreatePlaylist {
         this.numSongs = numSongs;
     }
 
+    /** assignNumEachGenre assigns a certain number of songs to each genre based on the ranking of the songs and the # of songs
+     * 1st choice gets 1/2
+     * 2nd choice gets 1/4
+     * 3rd gets 0.12
+     * 4th get 0.06
+     * 5th gets 0.04
+     * All the rest get 0.03 each
+     * @return returns a list of the number of songs for each genre
+     **/
     public List<Integer> assignNumEachGenre(){
         List<Integer> numOfSongsPerGenre = new ArrayList<>();
         int numSongsLeft = numSongs;
@@ -65,6 +84,8 @@ public class CreatePlaylist {
 
 
 
+    /** choosingSongs randomly selects songs for each genre based on assignNumEachGenre and adds them to a list of strings
+     * @return a list of the songs being added to that can be edited later.**/
     public List<String> choosingSongs() throws FileNotFoundException {
 
         List<String> songs = new ArrayList<>(160);
