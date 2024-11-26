@@ -5,7 +5,6 @@ import java.util.*;
 import java.io.File;  // Import the File class
 
 
-/** CreatePlaylist class represents a Playlist. This has genres that are the 1st, second, 3rd, 4th, and 5th choices, and have numSongs songs.**/
 public class CreatePlaylist {
     private String firstChoice;
     private String secondChoice;
@@ -13,15 +12,6 @@ public class CreatePlaylist {
     private String fourthChoice;
     private String fifthChoice;
     private int numSongs;
-
-    /** Constructor for the CreatePlaylist class. Parameters:
-     * @param firstChoice represents the user's first choice for genre
-     * @param secondChoice represents the user's second genre choice
-     * @param thirdChoice represents the user's third genre choice
-     * @param fourthChoice represents the user's fourth genre choice
-     * @param fifthChoice represents the user's fifth genre choice
-     * @param numSongs represents number of songs the user wants, from 1-160
-     **/
 
     public CreatePlaylist(String firstChoice, String secondChoice, String thirdChoice, String fourthChoice, String fifthChoice, int numSongs){
         this.firstChoice = firstChoice;
@@ -32,15 +22,6 @@ public class CreatePlaylist {
         this.numSongs = numSongs;
     }
 
-    /** assignNumEachGenre assigns a certain number of songs to each genre based on the ranking of the songs and the # of songs
-     * 1st choice gets 1/2
-     * 2nd choice gets 1/4
-     * 3rd gets 0.12
-     * 4th get 0.06
-     * 5th gets 0.04
-     * All the rest get 0.03 each
-     * @return returns a list of the number of songs for each genre
-     **/
     public List<Integer> assignNumEachGenre(){
         List<Integer> numOfSongsPerGenre = new ArrayList<>();
         int numSongsLeft = numSongs;
@@ -84,8 +65,6 @@ public class CreatePlaylist {
 
 
 
-    /** choosingSongs randomly selects songs for each genre based on assignNumEachGenre and adds them to a list of strings
-     * @return a list of the songs being added to that can be edited later.**/
     public List<String> choosingSongs() throws FileNotFoundException {
 
         List<String> songs = new ArrayList<>(160);
@@ -98,7 +77,7 @@ public class CreatePlaylist {
         boolean doneBefore = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File classicalFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Classical");
+                    "Classical");
             Scanner myReader = new Scanner(classicalFile);
 
 
@@ -106,7 +85,7 @@ public class CreatePlaylist {
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Classical"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Classical"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -143,13 +122,13 @@ public class CreatePlaylist {
         boolean doneBeforeCountry = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File countryFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Country");
+                    "Country");
             Scanner myReader = new Scanner(countryFile);
             int randomSong = rand.nextInt(83) + 1;
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Country"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Country"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -184,13 +163,13 @@ public class CreatePlaylist {
         boolean doneBeforeHipHop = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File hipHopFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\HipHop");
+                    "HipHop");
             Scanner myReader = new Scanner(hipHopFile);
             int randomSong = rand.nextInt(98) + 1;
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\HipHop"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("HipHop"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -225,13 +204,13 @@ public class CreatePlaylist {
         boolean doneBeforeIndie = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File indieFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Indie");
+                    "Indie");
             Scanner myReader = new Scanner(indieFile);
             int randomSong = rand.nextInt(87) + 1;
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Indie"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Indie"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -266,13 +245,13 @@ public class CreatePlaylist {
         boolean doneBeforeJazz = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File jazzFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Jazz");
+                    "Jazz");
             Scanner myReader = new Scanner(jazzFile);
             int randomSong = rand.nextInt(81) + 1;
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Jazz"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Jazz"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -307,13 +286,13 @@ public class CreatePlaylist {
         boolean doneBeforePop = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File jazzFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Pop");
+                    "Pop");
             Scanner myReader = new Scanner(jazzFile);
             int randomSong = rand.nextInt(80) + 1;
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Pop"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Pop"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -348,13 +327,13 @@ public class CreatePlaylist {
         boolean doneBeforeRap = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File rapFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Rap");
+                    "Rap");
             Scanner myReader = new Scanner(rapFile);
             int randomSong = rand.nextInt(122) + 1;
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Rap"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Rap"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
@@ -390,7 +369,7 @@ public class CreatePlaylist {
         boolean doneBeforeRock = false;
         for (int j = 0; j < numSongsGenre.getFirst(); j++){
             File rockFile = new File(
-                    "C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Rock");
+                    "Rock");
             Scanner myReader = new Scanner(rockFile);
 
 
@@ -398,7 +377,7 @@ public class CreatePlaylist {
             numbersChosen.add(randomSong);
 
             int k = 1;
-            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("C:\\Users\\BT_2S14_05\\IdeaProjects\\Playlist Creator\\src\\Rock"));
+            LineNumberReader lineNumberReader = new LineNumberReader(new FileReader("Rock"));
             lineNumberReader.setLineNumber(1);
             while (myReader.hasNext()){
                 String data = myReader.nextLine();
